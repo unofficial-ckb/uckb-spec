@@ -6,11 +6,5 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-pub mod error;
-pub mod revision;
-
-pub mod blockchain;
-pub mod constants;
-
-pub mod bootnodes;
-pub mod system_deps;
+pub const TAG: &str = "v0.25.0";
+pub const COMMIT: &str = "4257647a4dcfbecce6a4dde291b67c65d2152734";

@@ -6,11 +6,7 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-pub mod error;
-pub mod revision;
+use ckb_types::core::EpochNumberWithFraction;
 
-pub mod blockchain;
-pub mod constants;
-
-pub mod bootnodes;
-pub mod system_deps;
+pub const CELLBASE_MATURITY: EpochNumberWithFraction =
+    EpochNumberWithFraction::new_unchecked(4, 0, 1);
