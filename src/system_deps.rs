@@ -49,6 +49,7 @@ struct RawDepGroup {
 pub struct SystemDeps(HashMap<Network, SpecHashes>);
 
 #[derive(Property, Debug, Clone)]
+#[property(get(public), set(disable), mut(disable))]
 pub struct SpecHashes {
     genesis: H256,
     cellbase: H256,
@@ -57,6 +58,7 @@ pub struct SpecHashes {
 }
 
 #[derive(Property, Debug, Clone)]
+#[property(get(public), set(disable), mut(disable))]
 pub struct SystemCell {
     tx_hash: H256,
     index: usize,
@@ -65,6 +67,7 @@ pub struct SystemCell {
 }
 
 #[derive(Property, Debug, Clone)]
+#[property(get(public), set(disable), mut(disable))]
 pub struct DepGroup {
     tx_hash: H256,
     index: usize,
