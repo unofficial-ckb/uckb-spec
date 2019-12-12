@@ -7,7 +7,7 @@ edition = "2018"
 [dependencies]
 ckb-types = { git = "https://github.com/nervosnetwork/ckb", tag = "v0.25.2" }
 tentacle = { version = "~0.2", features = ["molc"] }
-property = "~0.2"
+property = "~0.3"
 failure = "~0.1"
 lazy_static = "~1.4"
 serde = "~1.0"
