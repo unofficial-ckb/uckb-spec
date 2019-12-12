@@ -6,5 +6,5 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-pub const TAG: &str = "v0.25.0";
-pub const COMMIT: &str = "4257647a4dcfbecce6a4dde291b67c65d2152734";
+pub const TAG: &str = "v0.25.2";
+pub const COMMIT: &str = "dda4ed94418dc694a096eca6de2a9ca0de8cd509";

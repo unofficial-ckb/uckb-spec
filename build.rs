@@ -23,9 +23,9 @@ fn check_checksum(path: &str, checksum: &[u8]) {
 
 fn main() {
     let checksum = if cfg!(windows) {
-        x!("0x4a3c9776861fb0eb7f5dff851730be5505734ec84a2180f78fa56b7641e9405a")
+        x!("0x94aea560d82f606a4101b384a7e43672431d5477630060a987a93f35dfbd07c9")
     } else {
-        x!("0xcbe8be3fefa486ce070607ea51634d7e98a338713abe1542f7a284f57c08ef33")
+        x!("0x6340a9c0a5d8b419fc6a6529d02089e5f3b5b53e65552a666323e61385b236e7")
     };
     check_checksum("src/resources/hashes.toml", checksum);
 }

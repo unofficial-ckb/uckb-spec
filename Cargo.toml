@@ -5,7 +5,7 @@ authors = ["Boyu Yang <yangby@cryptape.com>"]
 edition = "2018"
 
 [dependencies]
-ckb-types = { git = "https://github.com/nervosnetwork/ckb", tag = "v0.25.0" }
+ckb-types = { git = "https://github.com/nervosnetwork/ckb", tag = "v0.25.2" }
 tentacle = { version = "~0.2", features = ["molc"] }
 property = "~0.2"
 failure = "~0.1"
