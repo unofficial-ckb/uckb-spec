@@ -11,5 +11,12 @@ pub mod error;
 pub mod blockchain;
 pub mod constants;
 
-pub mod bootnodes;
-pub mod system_deps;
+mod bootnodes;
+mod serialized;
+mod system_deps;
+
+pub use crate::{
+    bootnodes::BootNodes,
+    serialized::{BaseSerializedSize, BaseStruct},
+    system_deps::{DepGroup, SpecHashes, SystemCell, SystemDeps},
+};
