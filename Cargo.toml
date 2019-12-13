@@ -5,7 +5,7 @@ authors = ["Boyu Yang <yangby@cryptape.com>"]
 edition = "2018"
 
 [dependencies]
-ckb-types = { git = "https://github.com/nervosnetwork/ckb", tag = "v0.25.2" }
+ckb-types       = { git = "https://github.com/nervosnetwork/ckb", tag = "v0.26.0" }
 tentacle = { version = "~0.2", features = ["molc"] }
 property = "~0.3"
 failure = "~0.1"
@@ -15,9 +15,9 @@ serde_derive = "~1.0"
 toml = "~0.5"
 
 [build-dependencies]
-ckb-types = { git = "https://github.com/nervosnetwork/ckb", tag = "v0.25.2" }
-ckb-resource = { git = "https://github.com/nervosnetwork/ckb", tag = "v0.25.2" }
-ckb-chain-spec = { git = "https://github.com/nervosnetwork/ckb", tag = "v0.25.2" }
+ckb-types       = { git = "https://github.com/nervosnetwork/ckb", tag = "v0.26.0" }
+ckb-resource    = { git = "https://github.com/nervosnetwork/ckb", tag = "v0.26.0" }
+ckb-chain-spec  = { git = "https://github.com/nervosnetwork/ckb", tag = "v0.26.0" }
 serde = "~1.0"
 serde_derive = "~1.0"
 toml = "~0.5"
