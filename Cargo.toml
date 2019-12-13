@@ -15,8 +15,12 @@ serde_derive = "~1.0"
 toml = "~0.5"
 
 [build-dependencies]
-slices = "~0.1"
-sha2 = "~0.8"
+ckb-types = { git = "https://github.com/nervosnetwork/ckb", tag = "v0.25.2" }
+ckb-resource = { git = "https://github.com/nervosnetwork/ckb", tag = "v0.25.2" }
+ckb-chain-spec = { git = "https://github.com/nervosnetwork/ckb", tag = "v0.25.2" }
+serde = "~1.0"
+serde_derive = "~1.0"
+toml = "~0.5"
 
 [badges]
 travis-ci = { repository = "unofficial-ckb/uckb-spec" }

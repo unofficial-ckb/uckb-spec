@@ -7,7 +7,6 @@
 // except according to those terms.
 
 pub mod error;
-pub mod revision;
 
 pub mod blockchain;
 pub mod constants;

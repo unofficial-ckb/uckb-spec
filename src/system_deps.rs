@@ -91,7 +91,7 @@ impl SystemDeps {
 
     fn initialize() -> Result<Self> {
         let raw_spec_hashes: HashMap<String, RawSpecHashes> =
-            toml::from_str(include_str!("resources/hashes.toml")).unwrap();
+            toml::from_str(include_str!(concat!(env!("OUT_DIR"), "/hashes.toml"))).unwrap();
         raw_spec_hashes
             .into_iter()
             .map(|(spec_name, raw_spec_values)| {

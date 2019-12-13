@@ -6,7 +6,7 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-use std::{convert::TryFrom, str::FromStr};
+use std::{convert::TryFrom, fmt, str::FromStr};
 
 use crate::error::{Error, Result};
 
@@ -34,6 +34,18 @@ pub enum DepGroupId {
 
 impl Network {
     pub(crate) const NAME: &'static str = "network";
+}
+
+impl fmt::Display for Network {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let s = match *self {
+            Self::Mainnet => "Mainnet",
+            Self::Testnet => "Testnet",
+            Self::Staging => "Staging",
+            Self::Develop => "Develop",
+        };
+        write!(f, "{}", s)
+    }
 }
 
 impl FromStr for Network {
