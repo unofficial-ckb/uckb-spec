@@ -3,6 +3,13 @@ name = "uckb-spec"
 version = "0.1.0"
 authors = ["Boyu Yang <yangby@cryptape.com>"]
 edition = "2018"
+description = "[Unofficial] CKB chain specification."
+homepage = "https://github.com/unofficial-ckb/uckb-spec"
+repository = "https://github.com/unofficial-ckb/uckb-spec"
+keywords = []
+categories = []
+license = "Apache-2.0 OR MIT"
+include = ["src/**/*", "LICENSE-*", "README.md", "build.rs"]
 
 [dependencies]
 ckb-types = "0.37.0"
