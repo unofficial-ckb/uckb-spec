@@ -1,4 +1,4 @@
-// Copyright (C) 2019 Boyu Yang
+// Copyright (C) 2019-2020 Boyu Yang
 //
 // Licensed under the Apache License, Version 2.0 <LICENSE-APACHE or
 // http://www.apache.org/licenses/LICENSE-2.0> or the MIT license
@@ -134,7 +134,7 @@ impl BaseSerializedSize {
         let block2 = block
             .clone()
             .as_builder()
-            .transactions(vec![cellbase.clone(), tx.clone(), tx.clone()].pack())
+            .transactions(vec![cellbase, tx.clone(), tx.clone()].pack())
             .build();
         if block1.serialized_size_without_uncle_proposals() != base_block_size + tx_size
             || block2.serialized_size_without_uncle_proposals() != base_block_size + tx_size * 2
@@ -160,7 +160,7 @@ impl BaseSerializedSize {
             .clone()
             .raw()
             .as_builder()
-            .inputs(vec![input.clone(), input.clone(), input.clone()].pack())
+            .inputs(vec![input.clone(), input.clone(), input].pack())
             .build();
         let tx1 = tx0.clone().as_builder().raw(raw_tx1).build();
         let tx2 = tx0.clone().as_builder().raw(raw_tx2).build();
@@ -191,8 +191,8 @@ impl BaseSerializedSize {
             .clone()
             .raw()
             .as_builder()
-            .outputs(vec![output.clone(), output.clone(), output.clone()].pack())
-            .outputs_data(vec![output_data.clone(), Default::default(), Default::default()].pack())
+            .outputs(vec![output.clone(), output.clone(), output].pack())
+            .outputs_data(vec![output_data, Default::default(), Default::default()].pack())
             .build();
         let tx1 = tx0.clone().as_builder().raw(raw_tx1).build();
         let tx2 = tx0.clone().as_builder().raw(raw_tx2).build();
@@ -219,7 +219,7 @@ impl BaseSerializedSize {
         let tx2 = tx0
             .clone()
             .as_builder()
-            .witnesses(vec![witness.clone(), witness.clone(), witness.clone()].pack())
+            .witnesses(vec![witness.clone(), witness.clone(), witness].pack())
             .build();
         let tx0_size = tx0.serialized_size_in_block();
         let tx1_size = tx1.serialized_size_in_block();

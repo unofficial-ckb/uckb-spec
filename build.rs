@@ -1,4 +1,4 @@
-// Copyright (C) 2019 Boyu Yang
+// Copyright (C) 2019-2020 Boyu Yang
 //
 // Licensed under the Apache License, Version 2.0 <LICENSE-APACHE or
 // http://www.apache.org/licenses/LICENSE-2.0> or the MIT license
@@ -38,16 +38,18 @@ struct SpecHashes {
     dep_groups: Vec<DepGroupCell>,
 }
 
-fn create_template_context<'a>(spec: &'a str) -> res::TemplateContext<'a> {
-    res::TemplateContext {
+fn create_template_context(spec: &str) -> res::TemplateContext {
+    res::TemplateContext::new(
         spec,
-        spec_source: "bundled",
-        rpc_port: res::DEFAULT_RPC_PORT,
-        p2p_port: res::DEFAULT_P2P_PORT,
-        log_to_file: false,
-        log_to_stdout: false,
-        block_assembler: "",
-    }
+        vec![
+            ("spec_source", "bundled"),
+            ("rpc_port", res::DEFAULT_RPC_PORT),
+            ("p2p_port", res::DEFAULT_P2P_PORT),
+            ("log_to_file", "false"),
+            ("log_to_stdout", "false"),
+            ("block_assembler", ""),
+        ],
+    )
 }
 
 fn load_hashes_from_chain_spec(mut chain_spec: spec::ChainSpec) -> SpecHashes {
@@ -55,7 +57,7 @@ fn load_hashes_from_chain_spec(mut chain_spec: spec::ChainSpec) -> SpecHashes {
     let hash_option = chain_spec.genesis.hash.take();
     let consensus = chain_spec
         .build_consensus()
-        .expect(&format!("failed to build consensus for {}", spec_name));
+        .unwrap_or_else(|_| panic!("failed to build consensus for {}", spec_name));
     if let Some(hash) = hash_option {
         let genesis_hash: H256 = consensus.genesis_hash().unpack();
         if hash != genesis_hash {
@@ -129,8 +131,8 @@ fn main() {
     let hashes_filename = "hashes.toml";
     let hashes_file = path::Path::new(&out_dir).join(hashes_filename);
 
-    let mut hashes_fd =
-        fs::File::create(&hashes_file).expect(&format!("failed to create file {:?}", hashes_file));
+    let mut hashes_fd = fs::File::create(&hashes_file)
+        .unwrap_or_else(|_| panic!("failed to create file {:?}", hashes_file));
     let mut first = true;
 
     for (name, spec_name) in &[
@@ -143,17 +145,17 @@ fn main() {
             first = false;
         } else {
             hashes_fd
-                .write_all("\n".as_bytes())
-                .expect(&format!("failed to write file {:?}", hashes_file));
+                .write_all(b"\n")
+                .unwrap_or_else(|_| panic!("failed to write file {:?}", hashes_file));
         }
         let dir = path::Path::new(&out_dir).join(name);
-        fs::create_dir_all(&dir).expect(&format!("failed to create directory {:?}", dir));
+        fs::create_dir_all(&dir).unwrap_or_else(|_| panic!("failed to create directory {:?}", dir));
         res::Resource::bundled_ckb_config()
             .export(&create_template_context(spec_name), dir)
-            .expect(&format!("failed to export ckb config for {}", name));
+            .unwrap_or_else(|_| panic!("failed to export ckb config for {}", name));
         let bundled = res::Resource::bundled(format!("specs/{}.toml", spec_name));
         let chain_spec = spec::ChainSpec::load_from(&bundled)
-            .expect(&format!("failed to load ckb chain spec for {}", name));
+            .unwrap_or_else(|_| panic!("failed to load ckb chain spec for {}", name));
         let spec_name = chain_spec.name.clone();
         let spec_hashes = load_hashes_from_chain_spec(chain_spec);
         let mut spec_hashes_map = collections::BTreeMap::default();
@@ -161,6 +163,6 @@ fn main() {
         let spec_hashes_string = toml::to_string(&spec_hashes_map).unwrap();
         hashes_fd
             .write_all(spec_hashes_string.as_bytes())
-            .expect(&format!("failed to write file {:?}", hashes_file));
+            .unwrap_or_else(|_| panic!("failed to write file {:?}", hashes_file));
     }
 }
