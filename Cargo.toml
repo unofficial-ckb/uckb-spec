@@ -12,7 +12,7 @@ license = "Apache-2.0 OR MIT"
 include = ["src/**/*", "LICENSE-*", "README.md", "build.rs"]
 
 [dependencies]
-ckb-types = "0.37.0"
+ckb-types = "0.38.0"
 tentacle = { version = "0.3.3", features = ["molc"] }
 property = "0.3.3"
 thiserror = "1.0.22"
@@ -22,9 +22,9 @@ serde_derive = "1.0.117"
 toml = "0.5.7"
 
 [build-dependencies]
-ckb-types = "0.37.0"
-ckb-resource = "0.37.0"
-ckb-chain-spec = "0.37.0"
+ckb-types = "0.38.0"
+ckb-resource = "0.38.0"
+ckb-chain-spec = "0.38.0"
 serde = "1.0.117"
 serde_derive = "1.0.117"
 toml = "0.5.7"
