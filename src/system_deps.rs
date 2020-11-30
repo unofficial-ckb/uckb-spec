@@ -155,13 +155,13 @@ impl SystemDeps {
         self.0
             .get(&network)
             .and_then(|spec| spec.system_cells.get(&key))
-            .ok_or_else(|| Error::UnknownSystemCell(network, key))
+            .ok_or(Error::UnknownSystemCell(network, key))
     }
 
     pub fn lookup_dep_group(&self, network: Network, key: DepGroupId) -> Result<&DepGroup> {
         self.0
             .get(&network)
             .and_then(|spec| spec.dep_groups.get(&key))
-            .ok_or_else(|| Error::UnknownDepGroup(network, key))
+            .ok_or(Error::UnknownDepGroup(network, key))
     }
 }
